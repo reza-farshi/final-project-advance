@@ -134,9 +134,6 @@ while True :
                         while True :
                             print(player_name , "  helth : " , int(player_hp) ,"/", player_max_hp , "  potions : " , potions_num)
                             print(monster_name , " health :" , int(monster_hp) , "/" , monster_max_hp)
-                            print(history_karbar)
-                            print(history_monster)
-                            print(monster_act_wheight)
                             player_act_choise = input("\nchoice yout act :\n1.punching \n2.kicking \n3.defensing \n4.eat potions \n5.escape\n")
                             match player_act_choise :
                                 case "1" :
@@ -546,9 +543,9 @@ while True :
                                 
                                 if monster_max_hp >= monster_hp > 0.66 *monster_max_hp :
 
-                                    monster_act_wheight[0] = (ehtemale_defence / ehtemale_attack ) * (player_max_hp / player_hp) * 3
+                                    monster_act_wheight[0] = (ehtemale_defence / ehtemale_attack +0.001 ) * (player_max_hp / player_hp +0.001) * 3
                                     
-                                    monster_act_wheight[1] = (ehtemale_attack / ehtemale_defence ) * (player_hp / player_max_hp ) * 1
+                                    monster_act_wheight[1] = (ehtemale_attack / ehtemale_defence +0.001 ) * (player_hp / player_max_hp ) * 1
     
                                     if monster_hard_attack[1] > 0 :
                                         monster_act_wheight[2] = monster_act_wheight[0] * 0.1 * (player_max_hp / player_hp) * 2
@@ -557,9 +554,9 @@ while True :
 
                                 if monster_max_hp *0.66 >= monster_hp > 0.33 *monster_max_hp :
                                     
-                                    monster_act_wheight[0] = (ehtemale_defence / ehtemale_attack) * (player_max_hp / player_hp) * 2
+                                    monster_act_wheight[0] = (ehtemale_defence / ehtemale_attack +0.001) * (player_max_hp / player_hp +0.001) * 2
                                     
-                                    monster_act_wheight[1] = (ehtemale_attack / ehtemale_defence) * (player_hp / player_max_hp ) * 2
+                                    monster_act_wheight[1] = (ehtemale_attack / ehtemale_defence +0.001) * (player_hp / player_max_hp ) * 2
     
                                     if monster_hard_attack[1] > 0 :
                                         monster_act_wheight[2] = monster_act_wheight[0] * 0.1 * (player_max_hp / player_hp) * 2
@@ -568,9 +565,9 @@ while True :
 
                                 if monster_max_hp *0.33 >= monster_hp > 0 :
                                     
-                                    monster_act_wheight[0] = (ehtemale_defence / ehtemale_attack) * (player_max_hp / player_hp) * 1
+                                    monster_act_wheight[0] = (ehtemale_defence / ehtemale_attack +0.001) * (player_max_hp / player_hp +0.001) * 1
                                     
-                                    monster_act_wheight[1] = (ehtemale_attack / ehtemale_defence) * (player_hp / player_max_hp ) * 3
+                                    monster_act_wheight[1] = (ehtemale_attack / ehtemale_defence +0.001) * (player_hp / player_max_hp ) * 3
     
                                     if monster_hard_attack[1] > 0 :
                                         monster_act_wheight[2] = monster_act_wheight[0] * 0.2 * (player_max_hp / player_hp) * 3
@@ -591,11 +588,7 @@ while True :
                                 history_monster.append(tashkhis_monster) 
 
 
-                            print("www" , weigh_choice)    
-                            print("win :" , win , "lose :" , lose)
-                            print("atak" ,monster_act_wheight[0])
-                            print("def" , monster_act_wheight[1])
-                            print(monster_act_wheight[2])
+                            
                     else :
                         k = 1
                         print("you are dieeeee")    
