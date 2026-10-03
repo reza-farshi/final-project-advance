@@ -377,11 +377,18 @@ while True :
                             history_karbar.append(act_karbar)
                             
                             if len(history_karbar) > 5 :
+                                weigh_choice = []
                                 akharin_act_karbar = history_karbar[-1]
                                 num_1_after = 0
                                 num_0_after = 0
-                                avrage_karbar = sum(history_karbar)/len(history_karbar)
-                                avrage_monster = sum(history_monster)/len(history_monster)
+                                if len(history_monster) < 10 :
+                                    avrage_karbar = sum(history_karbar)/len(history_karbar)
+                                    avrage_monster = sum(history_monster)/len(history_monster)
+                                else :
+                                    beta = len(history_karbar)
+                                    avrage_karbar = (history_karbar[beta-1] + history_karbar[beta-2] + history_karbar[beta-3] + history_karbar[beta-4] + history_karbar[beta-5] + history_karbar[beta-6] + history_karbar[beta-7] + history_karbar[beta-8] + history_karbar[beta-9] + history_karbar[beta-10]) / 10
+                                    avrage_monster = (history_monster[beta-1] + history_monster[beta-2] + history_monster[beta-3] + history_monster[beta-4] + history_monster[beta-5] + history_monster[beta-6] + history_monster[beta-7] + history_monster[beta-8] + history_monster[beta-9] + history_monster[beta-10]) / 10
+
                                 weight_karbar =[avrage_karbar , 1-avrage_karbar]
                                 weight_monster = [avrage_monster , 1-avrage_monster]
                                 if avrage_karbar > avrage_monster :
