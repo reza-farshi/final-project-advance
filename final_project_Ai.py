@@ -134,16 +134,21 @@ while True :
                         while True :
                             print(player_name , "  helth : " , int(player_hp) ,"/", player_max_hp , "  potions : " , potions_num)
                             print(monster_name , " health :" , int(monster_hp) , "/" , monster_max_hp)
+                            print(history_karbar)
+                            print(history_monster)
+                            print(monster_act_wheight)
                             player_act_choise = input("\nchoice yout act :\n1.punching \n2.kicking \n3.defensing \n4.eat potions \n5.escape\n")
                             match player_act_choise :
                                 case "1" :
                                     act_karbar = 1
+                                    history_karbar.append(act_karbar)
                                     player_damage = random.choices(punching_damge_list , weights = player_wheight )[0]
                                     print("PUNCH.....!!!!")
                                     print("your damage is" , player_damage)
                                     monster_act_choise = random.choices(monster_act_list , weights = monster_act_wheight)[0]
                                     if monster_act_choise == "defense" :
                                         print(" but oohhh the monster defended itself")
+                                        
 
                                     elif monster_act_choise == "attack" :
                                         monster_damage = random.choices(monster_damage_list , weights = monster_wheight )[0]
@@ -171,10 +176,10 @@ while True :
                                                 player_hp += 25 * i
                                                 if player_hp > player_max_hp :
                                                     player_hp = player_max_hp
-                                            
                                             break
-                                        else :
-                                            continue
+                                            
+                                            
+                                        
                                     elif monster_act_choise == "hard attack" :
                                         
                                         if monster_hard_attack[1] > 0 :
@@ -214,6 +219,7 @@ while True :
                                                 break
                                 case "2" :
                                     act_karbar = 1
+                                    history_karbar.append(act_karbar)
                                     player_damage = random.choices(kick_damage_list , weights = player_wheight )[0]
                                     print("KICK.....!!!!")
                                     player_hp -= i
@@ -240,6 +246,7 @@ while True :
                                                     player_hp += 25 * i
                                                     if player_hp > player_max_hp :
                                                         player_hp = player_max_hp
+                                                break
 
 
                                     elif monster_act_choise == "attack" :
@@ -271,8 +278,7 @@ while True :
                                                     player_hp = player_max_hp
                                             
                                             break
-                                        else :
-                                            continue
+                                        
                                     elif monster_act_choise == "hard attack" :
                                         
                                         if monster_hard_attack[1] > 0 :
@@ -309,11 +315,13 @@ while True :
                                                     player_hp += 25 * i
                                                     if player_hp > player_max_hp :
                                                         player_hp = player_max_hp
+                                            break
                                                 
-                                                break
+                                                
 
                                 case "3" :
                                     act_karbar = 0
+                                    history_karbar.append(act_karbar)
                                     print("defense")
                                     score += i * zarib_score
                                     player_hp -= i*2
@@ -336,8 +344,7 @@ while True :
                                             players_list.append(amalkard)
                                             break
                                         
-                                        else :
-                                            continue
+                                        
                                     if monster_act_choise == "hard attack" :
                                         
                                         if monster_hard_attack[1] > 0 :
@@ -350,8 +357,7 @@ while True :
 
                                             monster_hard_attack[1] -= 1
                                         
-                                    else :
-                                        continue
+                                    
                                 case "4" :
                                     print("you eating potions and your health 30 up")
                                     if potions_num > 0 :
@@ -377,7 +383,7 @@ while True :
                                     continue
                                 
                             
-                            history_karbar.append(act_karbar)
+                            weigh_choice = [1,1]
                             
                             if len(history_karbar) > 5 :
 
@@ -388,7 +394,8 @@ while True :
                                 taghir_faz_attack = 1
                                 taghir_faz_defence = 1
 
-                                beta = len(history_karbar)
+                                beta = len(history_monster)
+                                
 
                                 if len(history_monster) < 10 :
                                     avrage_karbar = sum(history_karbar)/len(history_karbar)
@@ -411,7 +418,7 @@ while True :
                                     if taghir_faz / (history_avrage_5_karbar[gama-2]+ 0.0001 )> 0.2 :
                                         if history_avrage_5_karbar[gama-1] > history_avrage_5_karbar[gama-2] :
                                             taghir_faz_attack =  1 + taghir_faz
-                                            taghir_faz_defence = 1-taghir_faz_attack
+                                            taghir_faz_defence = 1-taghir_faz
                                         else :
                                             taghir_faz_attack = 1 - taghir_faz
                                             taghir_faz_defence = 1 + taghir_faz
@@ -527,33 +534,68 @@ while True :
 
                                 
                                 tashkhis_monster = random.choices([1 , 0] , weights=weigh_choice)[0]
+                                
+                                ehtemale_attack = weigh_choice[0] 
+                                ehtemale_defence = weigh_choice[1] 
 
-                                ehtemale_attack = int(weigh_choice[0] * 100)
-                                ehtemale_defence = int(weigh_choice[1] * 100)
-
-                                monster_act_wheight[0] = (((monster_hp /monster_max_hp)*100)*ehtemale_defence) / (((player_hp/player_max_hp) *100 )*ehtemale_attack + 1 )
-
-                                monster_act_wheight[1] = (((player_hp/player_max_hp) *100 )*ehtemale_attack) / (((monster_hp /monster_max_hp)*100)*ehtemale_defence + 1 )
-
-                                if monster_hard_attack[1] > 0 :
-                                    monster_act_wheight[2] = (ehtemale_defence) / (((monster_hp /monster_max_hp)*100)*((player_hp/player_max_hp) *100 )*ehtemale_attack + 1 )
-                                    
+                                if ehtemale_attack >= ehtemale_defence :
+                                    ehtemale_defence = 1 - ehtemale_attack
                                 else :
-                                    monster_act_wheight[2] = 0
+                                    ehtemale_attack = 1-ehtemale_defence
+
+                                
+                                if monster_max_hp >= monster_hp > 0.66 *monster_max_hp :
+
+                                    monster_act_wheight[0] = (ehtemale_defence / ehtemale_attack ) * (player_max_hp / player_hp) * 3
+                                    
+                                    monster_act_wheight[1] = (ehtemale_attack / ehtemale_defence ) * (player_hp / player_max_hp ) * 1
+    
+                                    if monster_hard_attack[1] > 0 :
+                                        monster_act_wheight[2] = monster_act_wheight[0] * 0.1 * (player_max_hp / player_hp) * 2
+                                    else :
+                                        monster_act_wheight[2] = 0
+
+                                if monster_max_hp *0.66 >= monster_hp > 0.33 *monster_max_hp :
+                                    
+                                    monster_act_wheight[0] = (ehtemale_defence / ehtemale_attack) * (player_max_hp / player_hp) * 2
+                                    
+                                    monster_act_wheight[1] = (ehtemale_attack / ehtemale_defence) * (player_hp / player_max_hp ) * 2
+    
+                                    if monster_hard_attack[1] > 0 :
+                                        monster_act_wheight[2] = monster_act_wheight[0] * 0.1 * (player_max_hp / player_hp) * 2
+                                    else :
+                                        monster_act_wheight[2] = 0
+
+                                if monster_max_hp *0.33 >= monster_hp > 0 :
+                                    
+                                    monster_act_wheight[0] = (ehtemale_defence / ehtemale_attack) * (player_max_hp / player_hp) * 1
+                                    
+                                    monster_act_wheight[1] = (ehtemale_attack / ehtemale_defence) * (player_hp / player_max_hp ) * 3
+    
+                                    if monster_hard_attack[1] > 0 :
+                                        monster_act_wheight[2] = monster_act_wheight[0] * 0.2 * (player_max_hp / player_hp) * 3
+                                    else :
+                                        monster_act_wheight[2] = 0
+
+                                
+
+
+                            else :
+                                tashkhis_monster = random.choice([1 , 0])
 
                             if tashkhis_monster == act_karbar :
                                 win += 1
-                                if tashkhis_monster == 1 :
-                                    history_monster.append(1)
-                                else :
-                                    history_monster.append(0)
+                                history_monster.append(tashkhis_monster)                                
                             else :
                                 lose += 1
-                                if tashkhis_monster == 1 :
-                                    history_monster.append(0)
-                                else :
-                                    history_monster.append(1)
-            
+                                history_monster.append(tashkhis_monster) 
+
+
+                            print("www" , weigh_choice)    
+                            print("win :" , win , "lose :" , lose)
+                            print("atak" ,monster_act_wheight[0])
+                            print("def" , monster_act_wheight[1])
+                            print(monster_act_wheight[2])
                     else :
                         k = 1
                         print("you are dieeeee")    
