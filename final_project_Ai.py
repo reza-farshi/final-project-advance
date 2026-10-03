@@ -22,7 +22,7 @@ while True :
             history_monster = []
             savabeghe_karbar = []
             history_avrage_5_karbar = []
-            history_avrage_5_monster = []
+            
 
             sh = 0
             win = 0
@@ -380,31 +380,35 @@ while True :
                             history_karbar.append(act_karbar)
                             
                             if len(history_karbar) > 5 :
+
                                 weigh_choice = []
                                 akharin_act_karbar = history_karbar[-1]
                                 num_1_after = 0
                                 num_0_after = 0
                                 taghir_faz_attack = 1
                                 taghir_faz_defence = 1
+
                                 beta = len(history_karbar)
 
                                 if len(history_monster) < 10 :
                                     avrage_karbar = sum(history_karbar)/len(history_karbar)
                                     avrage_monster = sum(history_monster)/len(history_monster)
-                                else :
-                                    
+
+                                else :                                   
                                     avrage_karbar = (history_karbar[beta-1] + history_karbar[beta-2] + history_karbar[beta-3] + history_karbar[beta-4] + history_karbar[beta-5] + history_karbar[beta-6] + history_karbar[beta-7] + history_karbar[beta-8] + history_karbar[beta-9] + history_karbar[beta-10]) / 10
                                     avrage_monster = (history_monster[beta-1] + history_monster[beta-2] + history_monster[beta-3] + history_monster[beta-4] + history_monster[beta-5] + history_monster[beta-6] + history_monster[beta-7] + history_monster[beta-8] + history_monster[beta-9] + history_monster[beta-10]) / 10
 
 
                                 avrage_5_karbar = (history_karbar[beta-1] + history_karbar[beta-2] + history_karbar[beta-3] + history_karbar[beta-4] + history_karbar[beta-5])/5
+
                                 if len(history_karbar) % 5 == 0 :
                                     history_avrage_5_karbar.append(avrage_5_karbar)
+                                    
                                 if len(history_avrage_5_karbar) > 2 :
                                     gama = len(history_avrage_5_karbar)
                                     taghir_faz = ((history_avrage_5_karbar[gama-1] - history_avrage_5_karbar[gama-2])**2)**0.5
 
-                                    if taghir_faz / history_avrage_5_karbar[gama-2] > 0.2 :
+                                    if taghir_faz / (history_avrage_5_karbar[gama-2]+ 0.0001 )> 0.2 :
                                         if history_avrage_5_karbar[gama-1] > history_avrage_5_karbar[gama-2] :
                                             taghir_faz_attack =  1 + taghir_faz
                                             taghir_faz_defence = 1-taghir_faz_attack
@@ -414,18 +418,21 @@ while True :
 
                                 weight_karbar =[avrage_karbar , 1-avrage_karbar]
                                 weight_monster = [avrage_monster , 1-avrage_monster]
+
                                 if avrage_karbar > avrage_monster :
                                     alfa = 1-(avrage_karbar-avrage_monster)/2
                                     weigh_choice = [alfa * taghir_faz_attack  , (1-alfa) * taghir_faz_defence ]
                                 if avrage_karbar <= avrage_monster :
                                     alfa = 1-(avrage_monster-avrage_karbar)/2
                                     weigh_choice = [(1-alfa) * taghir_faz_attack  , alfa * taghir_faz_defence ]
+
                                 for p in range(len(history_karbar) - 1):
                                     if history_karbar[p] == akharin_act_karbar :
                                         if history_karbar[p+1] == 1 :
                                             num_1_after +=1
                                         else :
                                             num_0_after +=1
+
                                 if num_1_after > num_0_after :
                                     avrage_win = win / len(history_karbar)
                                     if avrage_win < 0.6 :
@@ -447,23 +454,29 @@ while True :
 
                                     ehtemal_0 = 0.5
                                     ehtemal_1 = 0.5
+
                                 w = weigh_choice[0]
                                 q = weigh_choice[1]
                                 weigh_choice[0] = w * ehtemal_1
-                                weigh_choice[1] = q * ehtemal_0    
+                                weigh_choice[1] = q * ehtemal_0  
+
                                 if len(history_karbar) > 13 and len(history_karbar) % 2 == 0 :
                                     savabeghe_karbar = []
                                     yes = 0
                                     no = 0
+
                                     if len(history_karbar) < 41 :
                                         sh = int(len(history_karbar) / 2)
                                     if len(history_karbar) > 41 :
                                         sh = int(len(history_karbar)-20)
+
                                     end = sh
+
                                     if sh <21 :
                                         start = 0
                                     else :
                                         start = sh - 20
+
                                     for s in range (start , end) :
                                         if history_karbar[s] == 1 :
                                             sabeghe_karbar = 1
@@ -471,12 +484,15 @@ while True :
                                             sabeghe_karbar = 0
 
                                         savabeghe_karbar.append(sabeghe_karbar)
+
                                     for l in range (len(savabeghe_karbar)) :
                                         if history_karbar[sh + l] == savabeghe_karbar[l] :
                                             yes +=1
                                         else :
                                             no += 1
+
                                     ehtemale_tekrare_olgo = yes / (yes + no + 1 )
+
                                     if ehtemale_tekrare_olgo > 0.8 :
                                         if history_karbar[sh] == 1 :
                                             ehtemale_tekrare_1 = 0.95
@@ -488,6 +504,7 @@ while True :
                                         q = weigh_choice[1]
                                         weigh_choice[0] = w * ehtemale_tekrare_1
                                         weigh_choice[1] = q * ehtemale_tekrare_0 
+
                                     elif 0.6 < ehtemale_tekrare_olgo <= 0.8 :
                                         if history_karbar[sh] == 1 :
                                             ehtemale_tekrare_1 = ehtemale_tekrare_olgo
@@ -499,6 +516,7 @@ while True :
                                         q = weigh_choice[1]
                                         weigh_choice[0] = w * ehtemale_tekrare_1
                                         weigh_choice[1] = q * ehtemale_tekrare_0
+
                                     else :
                                         ehtemale_tekrare_0 = 0.5
                                         ehtemale_tekrare_1 = 0.5
@@ -516,8 +534,10 @@ while True :
                                 monster_act_wheight[0] = (((monster_hp /monster_max_hp)*100)*ehtemale_defence) / (((player_hp/player_max_hp) *100 )*ehtemale_attack + 1 )
 
                                 monster_act_wheight[1] = (((player_hp/player_max_hp) *100 )*ehtemale_attack) / (((monster_hp /monster_max_hp)*100)*ehtemale_defence + 1 )
+
                                 if monster_hard_attack[1] > 0 :
                                     monster_act_wheight[2] = (ehtemale_defence) / (((monster_hp /monster_max_hp)*100)*((player_hp/player_max_hp) *100 )*ehtemale_attack + 1 )
+                                    
                                 else :
                                     monster_act_wheight[2] = 0
 
