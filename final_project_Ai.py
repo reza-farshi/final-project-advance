@@ -477,7 +477,7 @@ while True :
                                         weigh_choice[0] = w * ehtemale_tekrare_1
                                         weigh_choice[1] = q * ehtemale_tekrare_0
 
-                                print(weigh_choice)
+                                
                                 tashkhis_monster = random.choices([1 , 0] , weights=weigh_choice)[0]
 
                                 ehtemale_attack = int(weigh_choice[0] * 100)
