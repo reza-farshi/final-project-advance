@@ -21,6 +21,9 @@ while True :
             history_karbar = []
             history_monster = []
             savabeghe_karbar = []
+            history_avrage_5_karbar = []
+            history_avrage_5_monster = []
+
             sh = 0
             win = 0
             lose = 0
@@ -381,22 +384,42 @@ while True :
                                 akharin_act_karbar = history_karbar[-1]
                                 num_1_after = 0
                                 num_0_after = 0
+                                taghir_faz_attack = 1
+                                taghir_faz_defence = 1
+                                beta = len(history_karbar)
+
                                 if len(history_monster) < 10 :
                                     avrage_karbar = sum(history_karbar)/len(history_karbar)
                                     avrage_monster = sum(history_monster)/len(history_monster)
                                 else :
-                                    beta = len(history_karbar)
+                                    
                                     avrage_karbar = (history_karbar[beta-1] + history_karbar[beta-2] + history_karbar[beta-3] + history_karbar[beta-4] + history_karbar[beta-5] + history_karbar[beta-6] + history_karbar[beta-7] + history_karbar[beta-8] + history_karbar[beta-9] + history_karbar[beta-10]) / 10
                                     avrage_monster = (history_monster[beta-1] + history_monster[beta-2] + history_monster[beta-3] + history_monster[beta-4] + history_monster[beta-5] + history_monster[beta-6] + history_monster[beta-7] + history_monster[beta-8] + history_monster[beta-9] + history_monster[beta-10]) / 10
+
+
+                                avrage_5_karbar = (history_karbar[beta-1] + history_karbar[beta-2] + history_karbar[beta-3] + history_karbar[beta-4] + history_karbar[beta-5])/5
+                                if len(history_karbar) % 5 == 0 :
+                                    history_avrage_5_karbar.append(avrage_5_karbar)
+                                if len(history_avrage_5_karbar) > 2 :
+                                    gama = len(history_avrage_5_karbar)
+                                    taghir_faz = ((history_avrage_5_karbar[gama-1] - history_avrage_5_karbar[gama-2])**2)**0.5
+
+                                    if taghir_faz / history_avrage_5_karbar[gama-2] > 0.2 :
+                                        if history_avrage_5_karbar[gama-1] > history_avrage_5_karbar[gama-2] :
+                                            taghir_faz_attack =  1 + taghir_faz
+                                            taghir_faz_defence = 1-taghir_faz_attack
+                                        else :
+                                            taghir_faz_attack = 1 - taghir_faz
+                                            taghir_faz_defence = 1 + taghir_faz
 
                                 weight_karbar =[avrage_karbar , 1-avrage_karbar]
                                 weight_monster = [avrage_monster , 1-avrage_monster]
                                 if avrage_karbar > avrage_monster :
                                     alfa = 1-(avrage_karbar-avrage_monster)/2
-                                    weigh_choice = [alfa  , 1-alfa ]
+                                    weigh_choice = [alfa * taghir_faz_attack  , (1-alfa) * taghir_faz_defence ]
                                 if avrage_karbar <= avrage_monster :
                                     alfa = 1-(avrage_monster-avrage_karbar)/2
-                                    weigh_choice = [1-alfa  , alfa ]
+                                    weigh_choice = [(1-alfa) * taghir_faz_attack  , alfa * taghir_faz_defence ]
                                 for p in range(len(history_karbar) - 1):
                                     if history_karbar[p] == akharin_act_karbar :
                                         if history_karbar[p+1] == 1 :
