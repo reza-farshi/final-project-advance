@@ -55,16 +55,19 @@ admin_list = [ ]
 
 admin_list_title = ["number" , "first name" , "last name" ,"depertement" , "username" , "password"]
 
-Saturday = []
-Sunday = []
-Monday = []
-Tuesday = []
-Wednesday = []
-Thursday = []
-Friday = []
+week_days = ["Saturday" , "Sunday" , "Monday" , "Tuesday" , "Wednesday" , "Thursday" , "Friday"]
+Saturday = ["Saturday :"]
+Sunday = ["Sunday :"]
+Monday = ["Monday :"]
+Tuesday = ["Tuesday :"]
+Wednesday = ["Wednesday :"]
+Thursday = ["Thursday :"]
+Friday = ["Friday :"]
 week_list = [Saturday , Sunday , Monday , Tuesday , Wednesday , Thursday , Friday]
 
 clas_time = []
+
+course_title = ["depertement" , 'serial of course' , "course name" , "teacher name" , "class number" , "start hours" , "end hours" , "Remaining capacity" , "price" , "day"]
 
 last_serial_class = 1111
 
@@ -315,7 +318,7 @@ while True :
                                                                     admin_detail.append(departement)
                                                                     admin_detail.append(enter_username)
                                                                     admin_detail.append(enter_password)
-
+                                                                    print("creat admin suess")
                                                                     admin_list.append(admin_detail)
                                                                     admin_list.sort(key=lambda x: x[0],)
 
@@ -708,6 +711,7 @@ while True :
                                                                 course_detail.append(course_end_time_enter)
                                                                 course_detail.append(class_capacity[v])
                                                                 course_detail.append(course_price_enter)
+                                                                course_detail.append(week_days[w])
 
 
 
@@ -860,8 +864,121 @@ while True :
                                                         continue
                                         case "3" :
                                             while True :
-                                                for m in week_list :
-                                                    print( m)
+                                                while True :
+                                                    menu = input("\n1.all course \n2.search by depertement \n3.search by day of week \n4.Exit \n")
+                                                    match menu :
+                                                                    case "1" :
+                                                                        print(course_title)
+                                                                        for k in course_list :
+                                                                            print( k)
+                                                                    case "2" :
+                                                                        while True :
+                                                                            menu = input("\n1.IT depertement \n2.Engineering depertement \n3.Language depertement \n4.Electronic depertement \n5.Architecture depertement \n6.Art depertemnet \n7.Management depertement \n8.Exit \n")
+                                                                            match menu :
+                                                                                case "1" :
+                                                                                    print(course_title)
+                                                                                    for e in course_list :
+                                                                                        if e[0] == departemant_list_name[0] :
+                                                                                            print(e)
+                                                                                            
+                                                                                case "2" :
+                                                                                    print(course_title)
+                                                                                    for e in course_list :
+                                                                                        if e[0] == departemant_list_name[1] :
+                                                                                            print(e)
+                                                                                                                                
+                                                                                case "3" :
+                                                                                    print(course_title)
+                                                                                    for e in course_list :
+                                                                                        if e[0] == departemant_list_name[2] :
+                                                                                            print(e)
+                                                                                                                                
+                                                                                case "4" :
+                                                                                    print(course_title)
+                                                                                    for e in course_list :
+                                                                                        if e[0] == departemant_list_name[3] :
+                                                                                            print(e)
+                                                                                                                                
+                                                                                case "5" :
+                                                                                    print(course_title)
+                                                                                    for e in course_list :
+                                                                                        if e[0] == departemant_list_name[4] :
+                                                                                            print(e)
+                                                                                                                                
+                                                                                case "6" :
+                                                                                    print(course_title)
+                                                                                    for e in course_list :
+                                                                                        if e[0] == departemant_list_name[5] :
+                                                                                            print(e)
+                                                                                                                                
+                                                                                case "7" :
+                                                                                    print(course_title)
+                                                                                    for e in course_list :
+                                                                                        if e[0] == departemant_list_name[6] :
+                                                                                            print(e)
+                                                                                                                                
+                                                                                case "8" :
+                                                                                    break
+                                                                                case _ :
+                                                                                    print("Please choise Jost 1 to 8")
+                                                                                    continue
+                                                                    case "3" :
+                                                                        while True :
+                                                                            menu = input("\n1.Saturday  \n2.Sunday  \n3.Monday  \n4.Tuesday  \n5.Wednesday  \n6.Thursday  \n7.Friday  \n8.Exit \n")
+                                                                            match menu :
+                                                                                case "1" :
+                                                                                    print(course_title)
+                                                                                    for e in course_list :
+                                                                                        if e[9] == week_days[0] :
+                                                                                            print(e)
+                                                                                            
+                                                                                case "2" :
+                                                                                    print(course_title)
+                                                                                    for e in course_list :
+                                                                                        if e[9] == week_days[1] :
+                                                                                            print(e)
+                                                                                                                                
+                                                                                case "3" :
+                                                                                    print(course_title)
+                                                                                    for e in course_list :
+                                                                                        if e[9] == week_days[2] :
+                                                                                            print(e)
+                                                                                                                                
+                                                                                case "4" :
+                                                                                    print(course_title)
+                                                                                    for e in course_list :
+                                                                                        if e[9] == week_days[3] :
+                                                                                            print(e)
+                                                                                                                                
+                                                                                case "5" :
+                                                                                    print(course_title)
+                                                                                    for e in course_list :
+                                                                                        if e[9] == week_days[4] :
+                                                                                            print(e)
+                                                                                                                                
+                                                                                case "6" :
+                                                                                    print(course_title)
+                                                                                    for e in course_list :
+                                                                                        if e[9] == week_days[5] :
+                                                                                            print(e)
+                                                                                                                                
+                                                                                case "7" :
+                                                                                    print(course_title)
+                                                                                    for e in course_list :
+                                                                                        if e[9] == week_days[6] :
+                                                                                            print(e)
+                                                                                                                                
+                                                                                case "8" :
+                                                                                    break
+                                                                                case _ :
+                                                                                    print("Please choise Jost 1 to 8")
+                                                                                    continue
+                                                
+                                                                    case "4" :
+                                                                        break
+                                                                    case _ :
+                                                                        print("Please choise Jost 1 to 4")
+                                                                        continue
                                                 menu = input("\n1.Course Registration \n2.Exit\n")
                                                 match menu :
                                                     case "1" :
@@ -1019,6 +1136,7 @@ while True :
                     
 
                             student_list.append(student_detail)
+                            print("Sign up suess")
                             break
 
                     case "3" :
@@ -1028,15 +1146,126 @@ while True :
                         continue
 
         case "3" :
-            for k in week_list :
-                print( k)
+            while True :
+                menu = input("\n1.all course \n2.search by depertement \n3.search by day of week \n4.Exit \n")
+                match menu :
+                    case "1" :
+                        print(course_title)
+                        for k in course_list :
+                            print( k)
+                    case "2" :
+                        while True :
+                            menu = input("\n1. IT depertement \n2.Engineering depertement \n3.Language depertement \n4.Electronic depertement \n5.Architecture depertement \n6.Art depertemnet \n7.Management depertement \n8.Exit \n")
+                            match menu :
+                                case "1" :
+                                    print(course_title)
+                                    for e in course_list :
+                                        if e[0] == departemant_list_name[0] :
+                                            print(e)
+                                            
+                                case "2" :
+                                    print(course_title)
+                                    for e in course_list :
+                                        if e[0] == departemant_list_name[1] :
+                                            print(e)
+                                                                                
+                                case "3" :
+                                    print(course_title)
+                                    for e in course_list :
+                                        if e[0] == departemant_list_name[2] :
+                                            print(e)
+                                                                                
+                                case "4" :
+                                    print(course_title)
+                                    for e in course_list :
+                                        if e[0] == departemant_list_name[3] :
+                                            print(e)
+                                                                                
+                                case "5" :
+                                    print(course_title)
+                                    for e in course_list :
+                                        if e[0] == departemant_list_name[4] :
+                                            print(e)
+                                                                                
+                                case "6" :
+                                    print(course_title)
+                                    for e in course_list :
+                                        if e[0] == departemant_list_name[5] :
+                                            print(e)
+                                                                                
+                                case "7" :
+                                    print(course_title)
+                                    for e in course_list :
+                                        if e[0] == departemant_list_name[6] :
+                                            print(e)
+                                                                                
+                                case "8" :
+                                    break
+                                case _ :
+                                    print("Please choise Jost 1 to 8")
+                                    continue
+                    case "3" :
+                        while True :
+                            menu = input("\n1.Saturday  \n2.Sunday  \n3.Monday  \n4.Tuesday  \n5.Wednesday  \n6.Thursday  \n7.Friday  \n8.Exit \n")
+                            match menu :
+                                case "1" :
+                                    print(course_title)
+                                    for e in course_list :
+                                        if e[9] == week_days[0] :
+                                            print(e)
+                                            
+                                case "2" :
+                                    print(course_title)
+                                    for e in course_list :
+                                        if e[9] == week_days[1] :
+                                            print(e)
+                                                                                
+                                case "3" :
+                                    print(course_title)
+                                    for e in course_list :
+                                        if e[9] == week_days[2] :
+                                            print(e)
+                                                                                
+                                case "4" :
+                                    print(course_title)
+                                    for e in course_list :
+                                        if e[9] == week_days[3] :
+                                            print(e)
+                                                                                
+                                case "5" :
+                                    print(course_title)
+                                    for e in course_list :
+                                        if e[9] == week_days[4] :
+                                            print(e)
+                                                                                
+                                case "6" :
+                                    print(course_title)
+                                    for e in course_list :
+                                        if e[9] == week_days[5] :
+                                            print(e)
+                                                                                
+                                case "7" :
+                                    print(course_title)
+                                    for e in course_list :
+                                        if e[9] == week_days[6] :
+                                            print(e)
+                                                                                
+                                case "8" :
+                                    break
+                                case _ :
+                                    print("Please choise Jost 1 to 8")
+                                    continue
+
+                    case "4" :
+                        break
+                    case _ :
+                        print("Please choise Jost 1 to 4")
+                        continue
+                        
         case "4" :
             break
         case _ :
             print("Please choise Jost 1 to 4")
             continue
-
-
-
 
 
